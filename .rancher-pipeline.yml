@@ -2,7 +2,7 @@ stages:
 - name: compile
   steps:
   - runScriptConfig:
-      image: www.j116.cn/sso/jrjmaven:v1
+      image: www.j116.cn/sso/jrjmaven:v2
       shellScript: mvn clean package install
 - name: publish
   steps:
