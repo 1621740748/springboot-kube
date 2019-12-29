@@ -1,6 +1,6 @@
 node{
 	stage('拉取代码') {
-		git  url: 'https://github.com/yangsenlin01/springboot1.git'
+		git  url: 'https://github.com/1621740748/springboot1.git'
 	}
 	stage('maven编译') {
 		dir('./') {
