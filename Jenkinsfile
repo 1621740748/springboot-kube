@@ -9,7 +9,7 @@ node{
 	}
 	stage('镜像构建') {
 		dir('./') {
-        docker.build("192.168.19.114/project/project-java-1:prod-${BUILD_ID}").push()
+        docker.build("www.j116.cn/sso/boot1:prod-${BUILD_ID}").push()
        }
 	}
 	stage('运行镜像') {
