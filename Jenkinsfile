@@ -20,7 +20,7 @@ node{
 		dir('./') {
         sh '''
             scp -rp k8s/* c32:/data/k8s/
-            ssh  c32  sudo kubectl apply  /data/k8s/*
+            ssh  c32  sudo kubectl apply -f  /data/k8s/*
         '''   
     }
 	}
