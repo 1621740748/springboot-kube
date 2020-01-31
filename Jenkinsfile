@@ -22,7 +22,7 @@ node{
 	}
 	stage('运行镜像') {
          dir('./') {
-             sh "sed -i \'s/www.j116.cn\\/sso\\/boot1:prod-xxx/www.j116.cn\\/sso\\/boot1:${tag_name}/g\' deployment.yaml"    
+             sh "sed -i 's/www.j116.cn\\/sso\\/boot1:prod-xxx/www.j116.cn\\/sso\\/boot1:${tag_name}/g' deployment.yaml"    
          sh '''
             ssh c32 mkdir -p /data/k8s2
             scp -rp k8s/* c32:/data/k8s2/    
