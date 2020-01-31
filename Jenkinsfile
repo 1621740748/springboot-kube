@@ -8,12 +8,13 @@ node{
        }
 	}
 	stage('镜像构建') {
-		dir('./') {
-            docker_img_name='www.j116.cn/sso/boot1'
+	    dir('./') {
+            docker_host="www.j116.cn"
+            docker_img_name="${docker_host}/sso/boot1"
             tag_name="prod-${BUILD_ID}"
             sh "docker build -t ${docker_img_name}:${tag_name} . "
             withCredentials([usernamePassword(credentialsId: 'harbor', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
-            sh "docker login -u ${dockerUser} -p ${dockerPassword}  www.j116.cn"
+            sh "docker login -u ${dockerUser} -p ${dockerPassword}  ${docker_host}"
             sh "docker push ${docker_img_name}:${tag_name}"
         }    
        }
