@@ -20,7 +20,7 @@ node{
        }
 	}
 	stage('运行镜像') {
-		dir('./') {
+        dir('./') {
         sh '''
             ssh c32 mkdir -p /data/k8s2
             scp -rp k8s/* c32:/data/k8s2/
