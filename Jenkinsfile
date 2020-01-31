@@ -1,8 +1,8 @@
 node{
 
-    def docker_host="www.j116.cn"
-    def docker_img_name="${docker_host}/sso/boot1"
-    def tag_name="prod-${BUILD_ID}"
+    docker_host="www.j116.cn"
+    docker_img_name="${docker_host}/sso/boot1"
+    tag_name="prod-${BUILD_ID}"
 	stage('拉取代码') {
 		checkout scm
 	}
