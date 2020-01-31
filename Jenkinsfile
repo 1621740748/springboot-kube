@@ -25,9 +25,10 @@ node{
          sh '''
             ssh c32 mkdir -p /data/k8s2
             scp -rp k8s/* c32:/data/k8s2/
-            ssh  c32  sed -i "s/www.j116.cn\\/sso\\/boot1:prod-xxx/www.j116.cn\\/sso\\/boot1:${tag_name}/g" /data/k8s2/deployment.yaml
-            ssh  c32  sudo kubectl apply -f  /data/k8s2/deployment.yaml
-        '''   
+         '''    
+         sh ' ssh  c32  sed -i "\'s/www.j116.cn\\/sso\\/boot1:prod-xxx/www.j116.cn\\/sso\\/boot1:${tag_name}/g\'" /data/k8s2/deployment.yaml'
+
+         sh 'ssh  c32  sudo kubectl apply -f  /data/k8s2/deployment.yaml'
     }
 	}
 }
