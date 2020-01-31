@@ -27,5 +27,5 @@ spec:
             memory: 500Mi
         ports:
         - containerPort: 8080
-        imagePullSecrets:
-        - name: registry-secret
+      imagePullSecrets:
+      - name: registry-secret
