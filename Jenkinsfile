@@ -4,7 +4,7 @@ node{
 	}
 	stage('maven编译') {
 		dir('./') {
-		sh 'mvn clean install -DskipTests=true'
+		sh '/usr/local/maven3/bin/mvn  clean install -DskipTests=true'
        }
 	}
 	stage('镜像构建') {
