@@ -1,4 +1,8 @@
 node{
+
+    docker_host="www.j116.cn"
+    docker_img_name="${docker_host}/sso/boot1"
+    tag_name="prod-${BUILD_ID}"
 	stage('拉取代码') {
 		checkout scm
 	}
@@ -9,9 +13,6 @@ node{
 	}
 	stage('镜像构建') {
 	    dir('./') {
-            docker_host="www.j116.cn"
-            docker_img_name="${docker_host}/sso/boot1"
-            tag_name="prod-${BUILD_ID}"
             sh "docker build -t ${docker_img_name}:${tag_name} . "
             withCredentials([usernamePassword(credentialsId: 'harbor', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
             sh "docker login -u ${dockerUser} -p ${dockerPassword}  ${docker_host}"
