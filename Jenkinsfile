@@ -19,8 +19,8 @@ node{
 	stage('运行镜像') {
 		dir('./') {
         sh '''
-            scp -rp k8s/* c32:/data/k8s/
-            ssh  c32  sudo kubectl apply -f  /data/k8s/*
+            scp -rp k8s/* c32:/data/k8s2/
+            ssh  c32  sudo kubectl apply -f  /data/k8s2/*
         '''   
     }
 	}
