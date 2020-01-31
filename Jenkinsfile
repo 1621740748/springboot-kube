@@ -10,9 +10,11 @@ node{
 	stage('镜像构建') {
 		dir('./') {
             docker_img_name='www.j116.cn/sso/boot1'
-           withCredentials([usernamePassword(credentialsId: 'harbor', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+            tag_name="prod-${BUILD_ID}"
+            sh "docker build -t ${docker_img_name}:${tag_name} . "
+            withCredentials([usernamePassword(credentialsId: 'harbor', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
             sh "docker login -u ${dockerUser} -p ${dockerPassword}  www.j116.cn"
-            sh "docker push ${docker_img_name}:prod-${BUILD_ID}"
+            sh "docker push ${docker_img_name}:${tag_name}"
         }    
        }
 	}
