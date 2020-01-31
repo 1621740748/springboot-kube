@@ -9,7 +9,11 @@ node{
 	}
 	stage('镜像构建') {
 		dir('./') {
-        docker.build("www.j116.cn/sso/boot1:prod-${BUILD_ID}").push()
+            docker_img_name='www.j116.cn/sso/boot1'
+           withCredentials([usernamePassword(credentialsId: 'docker-register', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+            sh "docker login -u ${dockerUser} -p ${dockerPassword}  www.j116.cn"
+            sh "docker push ${docker_img_name}:prod-${BUILD_ID}"
+        }    
        }
 	}
 	stage('运行镜像') {
