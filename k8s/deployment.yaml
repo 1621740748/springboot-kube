@@ -21,11 +21,11 @@ spec:
       containers:
       - name: master
         image:  www.j116.cn/sso/boot1:prod-xxx # or just image: redis
+      imagePullSecrets:
+      - name: registry-secret
         resources:
           requests:
             cpu: 100m
             memory: 500Mi
         ports:
         - containerPort: 8080
-      imagePullSecrets:
-      - name: registry-secret
