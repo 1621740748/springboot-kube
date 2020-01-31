@@ -1,6 +1,6 @@
 node{
 	stage('拉取代码') {
-		git  url: 'https://github.com/1621740748/springboot1.git'
+		git  url: 'http://192.168.1.16/hy1/springboot1.git'
 	}
 	stage('maven编译') {
 		dir('./') {
@@ -14,7 +14,10 @@ node{
 	}
 	stage('运行镜像') {
 		dir('./') {
-        rancher confirm: false, credentialId: '156f5548-407c-4297-9b91-e2954486a0f9', endpoint: 'http://192.168.19.112:8080/v2-beta', environmentId: '1a5', environments: '', image: '192.168.19.114/project/project-java-1:prod-${BUILD_ID}', ports: '', service: 'myStack/myService', timeout: 50
-	   }
+        sh '''
+            scp -rp k8s/* huangyan@c32:/data/k8s/
+            ssh  huangyan@c32  sudo kubectl apply  /data/k8s/*
+        '''   
+    }
 	}
 }
