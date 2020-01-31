@@ -23,7 +23,7 @@ node{
         sh '''
             ssh c32 mkdir -p /data/k8s2
             scp -rp k8s/* c32:/data/k8s2/
-            ssh  c32  sudo kubectl apply -f  /data/k8s2/*
+            ssh  c32  sudo kubectl apply -f  /data/k8s2/deployment.yaml
         '''   
     }
 	}
