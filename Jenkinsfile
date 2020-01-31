@@ -1,6 +1,6 @@
 node{
 	stage('拉取代码') {
-		git  url: 'http://192.168.1.16/hy1/springboot1.git'
+		checkout scm
 	}
 	stage('maven编译') {
 		dir('./') {
