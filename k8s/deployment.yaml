@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: master
-        image:  www.j116.cn/sso/boot1:prod-11 # or just image: redis
+        image:  www.j116.cn/sso/boot1:prod-xxx # or just image: redis
         resources:
           requests:
             cpu: 100m
