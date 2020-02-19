@@ -188,7 +188,7 @@ subjects:
 ---
 
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: nginx-ingress-controller
   namespace: ingress-nginx
@@ -196,7 +196,6 @@ metadata:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: ingress-nginx
@@ -213,11 +212,12 @@ spec:
       # wait up to five minutes for the drain of connections
       terminationGracePeriodSeconds: 300
       serviceAccountName: nginx-ingress-serviceaccount
+      hostNetwork: true
       nodeSelector:
-        kubernetes.io/os: linux
+        machine: nginx-ingress
       containers:
         - name: nginx-ingress-controller
-          image: registry.cn-hangzhou.aliyuncs.com/google_containers/nginx-ingress-controller:0.26.2
+          image: registry.cn-hangzhou.aliyuncs.com/jrj/nginx-ingress-controller:0.28.0
           args:
             - /nginx-ingress-controller
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
@@ -232,8 +232,8 @@ spec:
                 - ALL
               add:
                 - NET_BIND_SERVICE
-            # www-data -> 33
-            runAsUser: 33
+            # www-data -> 101
+            runAsUser: 101
           env:
             - name: POD_NAME
               valueFrom:
