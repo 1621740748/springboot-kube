@@ -27,6 +27,8 @@ node{
             ssh m1  mkdir -p /data/k8s2
             scp -rp k8s/* m1:/data/k8s2/    
             ssh  m1   sudo kubectl apply -f  /data/k8s2/deployment.yaml
+            ssh  m1   sudo kubectl apply -f  /data/k8s2/service.yaml
+            ssh  m1   sudo kubectl apply -f  /data/k8s2/ingress.yaml
            '''  
     }
 	}
