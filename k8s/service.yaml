@@ -4,13 +4,9 @@ metadata:
   name: boot1-service
   labels:
     app: boot1
-#    role: master
-    tier: backend
 spec:
   type: NodePort   
   ports:
   - port: 8080
   selector:
     app: boot1
-#    role: master
-    tier: backend
