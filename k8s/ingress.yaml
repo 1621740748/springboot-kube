@@ -12,6 +12,6 @@ spec:
       paths:
       - path: 
         backend:
-          serviceName: boot1-svc
+          serviceName: boot1-service
           servicePort: 80
 
