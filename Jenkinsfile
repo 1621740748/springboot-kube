@@ -25,7 +25,7 @@ node{
              sh "sed -i 's/www.j116.cn\\/sso\\/boot1:prod-xxx/harbor.jrj.com.cn\\/pay\\/springboot-demo:${tag_name}/g' k8s/deployment.yaml"    
          sh '''
             ssh m1  mkdir -p /data/k8s2
-            scp -rp k8s/* c32:/data/k8s2/    
+            scp -rp k8s/* m1:/data/k8s2/    
             ssh  m1   sudo kubectl apply -f  /data/k8s2/deployment.yaml
            '''  
     }
