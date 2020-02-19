@@ -1,7 +1,7 @@
 node{
 
-    docker_host="www.j116.cn"
-    docker_img_name="${docker_host}/sso/boot1"
+    docker_host="harbor.jrj.com.cn"
+    docker_img_name="${docker_host}/pay/springboot-demo"
     tag_name="prod-${BUILD_ID}"
 	stage('拉取代码') {
 		checkout scm
@@ -22,11 +22,11 @@ node{
 	}
 	stage('运行镜像') {
          dir('./') {
-             sh "sed -i 's/www.j116.cn\\/sso\\/boot1:prod-xxx/www.j116.cn\\/sso\\/boot1:${tag_name}/g' k8s/deployment.yaml"    
+             sh "sed -i 's/www.j116.cn\\/sso\\/boot1:prod-xxx/harbor.jrj.com.cn\\/pay\\/springboot-demo:${tag_name}/g' k8s/deployment.yaml"    
          sh '''
-            ssh c32 mkdir -p /data/k8s2
+            ssh m1  mkdir -p /data/k8s2
             scp -rp k8s/* c32:/data/k8s2/    
-            ssh  c32  sudo kubectl apply -f  /data/k8s2/deployment.yaml
+            ssh  m1   sudo kubectl apply -f  /data/k8s2/deployment.yaml
            '''  
     }
 	}
