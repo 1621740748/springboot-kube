@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: boot1-service
-  labels:
-    app: boot1
 spec:
-  type: NodePort   
   ports:
-  - port: 8080
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
   selector:
     app: boot1
