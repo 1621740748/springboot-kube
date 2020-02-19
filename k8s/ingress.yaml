@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: boot1-ingress
+  namespace: default
+  annotations: 
+    kubernets.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: boot1.jrj.com
+    http:
+      paths:
+      - path: 
+        backend:
+          serviceName: boot1-svc
+          servicePort: 80
+
